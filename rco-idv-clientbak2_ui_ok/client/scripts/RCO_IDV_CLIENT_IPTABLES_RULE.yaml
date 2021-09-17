@@ -1,0 +1,12 @@
+VERSION: 1.0
+IDV_Client:
+  description: 8900 is for communicating with spice
+  TCP: 8900
+Terminal_conf:
+  description: 9115\9117 is for RCC easy deploy
+  UDP: 9115,9117
+IDV_Clinet_newBT:
+  description: BT
+  TCP: 6771,6969,6881:7181
+  UDP: 6771,6969,6881:7181
+

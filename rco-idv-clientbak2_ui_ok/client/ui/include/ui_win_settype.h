@@ -1,0 +1,14 @@
+#ifndef _UI_WIN_SETTYPE_H_
+#define _UI_WIN_SETTYPE_H_
+
+
+typedef enum {
+    UI_WIN_SETTYPE_NONE = 0,
+    UI_WIN_SETTYPE_USER_IVALID,
+    UI_WIN_SETTYPE_USER_BINDED,
+    UI_WIN_SETTYPE_TERM_BINDED,
+    UI_WIN_SETTYPE_FIX_USER
+} ui_win_setype_enum;
+
+
+#endif

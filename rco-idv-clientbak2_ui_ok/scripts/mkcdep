@@ -1,0 +1,34 @@
+#!/bin/sh
+#$1 file name 
+#$2 ALL COMPILE FLAGS
+
+file=$1
+shift
+path=""
+while [ -n "$1" ]; do
+	path="$path $1"
+	shift
+done
+echo "file=$file"
+echo "path=$path"
+
+name=${_PDIR}/$(echo $file | sed -e 's/\([A-Za-z0-9_]*\)[.][cCSs]/\1.d/')
+trap "rm -f ${name}.tmp ${name}.temp ${name}; exit 1" 1 2
+echo "name=$name"
+
+FLAGS=$(echo $2)
+gcc -M $FLAGS $path $file -o ${name}.tmp
+
+if [ -f ${name}.tmp ]; then
+    echo -n ${_PDIR}/ && cat ${name}.tmp > ${name}.temp
+    nline=$(cat ${name}.tmp | wc -l)
+    sed -e "s,\(\$*\)\.o[ :]*,\1.o ${name} : \$(wildcard ,g"  -e "${nline}s/\$/)/" < ${name}.temp
+    rm -f ${name}.tmp
+    rm -f ${name}.temp
+else
+   #echo "Make $1.d fail!!!!!"
+   exit
+fi
+
+exit 0
+

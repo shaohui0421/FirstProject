@@ -1,0 +1,88 @@
+In file included from /usr/include/glib-2.0/gobject/gobject.h:24:0,
+                 from /usr/include/glib-2.0/gobject/gbinding.h:29,
+                 from /usr/include/glib-2.0/glib-object.h:23,
+                 from /usr/include/glib-2.0/gio/gioenums.h:28,
+                 from /usr/include/glib-2.0/gio/giotypes.h:28,
+                 from /usr/include/glib-2.0/gio/gio.h:26,
+                 from /usr/include/gtk-2.0/gdk/gdkapplaunchcontext.h:30,
+                 from /usr/include/gtk-2.0/gdk/gdk.h:32,
+                 from /usr/include/gtk-2.0/gtk/gtk.h:32,
+                 from /home/zoudg/4.1R1P7/rco-idv-client/client/ui/include/ui_main.h:7,
+                 from ui_dialog_wifipwd.c:1:
+ui_dialog_wifipwd.c: In function ‘mk_verify_entry.constprop’:
+/usr/include/glib-2.0/gobject/gtype.h:2207:12: warning: ‘entry’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+     ((ct*) g_type_check_instance_cast ((GTypeInstance*) ip, gt))
+            ^
+ui_dialog_wifipwd.c:283:13: note: ‘entry’ was declared here
+  GtkWidget *entry;
+             ^
+mina.cpp: In member function ‘void Mina::handle_sync_ipxe(std::__cxx11::string)’:
+mina.cpp:778:9: warning: variable ‘ret’ set but not used [-Wunused-but-set-variable]
+     int ret = 0;
+         ^
+ui_main.c: In function ‘ui_onboard_init’:
+ui_main.c:44:5: warning: ignoring return value of ‘system’, declared with attribute warn_unused_result [-Wunused-result]
+     system(str);
+     ^
+ui_main.c: In function ‘ui_win_pop_up_keyboard’:
+ui_main.c:50:5: warning: ignoring return value of ‘system’, declared with attribute warn_unused_result [-Wunused-result]
+     system(SHOW_COMMAND);
+     ^
+ui_main.c: In function ‘ui_win_close_keyboard’:
+ui_main.c:69:5: warning: ignoring return value of ‘system’, declared with attribute warn_unused_result [-Wunused-result]
+     system(KILL_COMMAND);
+     ^
+ui_main.c: In function ‘redisplay_adapt_control’:
+ui_main.c:446:5: warning: ignoring return value of ‘system’, declared with attribute warn_unused_result [-Wunused-result]
+     system(KILL_COMMAND);
+     ^
+application.cpp: In member function ‘int Application::w2l_sync_image(LogicEvent*)’:
+application.cpp:5092:9: warning: unused variable ‘unit_index’ [-Wunused-variable]
+     HttpPortInfo hpi;
+         ^
+           This software is released under the GNU GPL.
+The package documentation directory ./doc-pak does not exist. 
+Should I create a default set of package docs? Preparing package documentation...OK
+*** No known documentation files were found. The new package 
+*** won't include a documentation directory.
+*****************************************
+**** Debian package creation selected ***
+*****************************************
+This package will be built according to these values: 
+0 -  Maintainer: [ root@ubuntu ]
+1 -  Summary: [ Package created with checkinstall 1.6.2 ]
+2 -  Name:    [ rcd ]
+3 -  Version: [ 4.1.592 ]
+4 -  Release: [ R1P7 ]
+5 -  License: [ GPL ]
+6 -  Group:   [ checkinstall ]
+7 -  Architecture: [ amd64 ]
+8 -  Source location: [ rco-idv-client ]
+9 -  Alternate source location: [  ]
+10 - Requires: [  ]
+11 - Provides: [ rcd ]
+12 - Conflicts: [  ]
+13 - Replaces: [  ]
+Enter a number to change any of them or press ENTER to continue: Installing with make install...========================= Installation results ===========================
+======================== Installation successful ==========================
+Some of the files created by the installation are inside the home directory: /home
+You probably don't want them to be included in the package.
+Do you want me to list them? Should I exclude them from the package? (Saying yes is a good idea) Some of the files created by the installation are inside the build
+directory: /home/zoudg/4.1R1P7/rco-idv-client
+You probably don't want them to be included in the package,
+especially if they are inside your home directory.
+Do you want me to list them? Should I exclude them from the package? (Saying yes is a good idea) Copying files to the temporary directory...OK
+Compressing man pages...OK
+Building file list...OK
+Building Debian package...OK
+NOTE: The package will not be installed
+Erasing temporary files...OK
+Writing backup package...OK
+OK
+Deleting temp dir...OK
+ Done. The new package has been saved to
+
+ /home/zoudg/4.1R1P7/rco-idv-client/rcd_4.1.592-R1P7_amd64.deb
+ You can install it in your system anytime using: 
+
+      dpkg -i rcd_4.1.592-R1P7_amd64.deb

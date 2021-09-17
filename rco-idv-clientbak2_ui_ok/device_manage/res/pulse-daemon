@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# daemon the pulseaudio per 1s
+
+while true
+do
+  if ! /usr/bin/pulseaudio --check; then
+    if [ -e /proc/asound/card0/pcm0c/info ]; then  # ensure the echo_cancel inherit the card0
+      echo `date` start pulseaudio >> /var/log/rcdev.log
+      /usr/bin/pulseaudio --start --log-target=syslog
+    else
+      echo `date` wait the card0 >> /var/log/rcdev.log
+      sleep 1
+    fi
+  fi
+  sleep 1
+done
+
+
+

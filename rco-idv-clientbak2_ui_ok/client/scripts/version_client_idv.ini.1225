@@ -1,0 +1,11 @@
+[LINUX-RCC-Client]
+ruijie.product=RCC-Client
+ruijie.rcc.client.mainVersion=4
+ruijie.rcc.client.minorVersion=1
+ruijie.rcc.client.threeVersion=0
+ruijie.rcc.client.extra1=_R1P7
+ruijie.rcc.client.fourVersion=594
+ruijie.rcc.client.extra2=
+ruijie.rcc.client.buildDate=2020-11-19
+ruijie.rcc.client.buildHEAD=8e7403cf8de185fe31d3e8bfea175c942870c07d
+ruijie.rcc.client.buildBranch=client-4.1R1P7

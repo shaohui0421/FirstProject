@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+
+res_folder=/opt/lessons/RCC_Client/res/
+scripts_folder=/opt/lessons/RCC_Client/scripts/
+if [ -d ${res_folder} ]; then
+    rm -rf ${res_folder}
+fi
+if [ -d ${scripts_folder} ]; then
+    rm -rf ${scripts_folder}
+fi
+
+sync
+

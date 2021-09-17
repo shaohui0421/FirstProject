@@ -1,0 +1,82 @@
+#!/bin/bash
+#
+
+# after installing new lib, we must re-do ldconfig.
+ldconfig
+
+#update to the new system format
+os_version=`cat /etc/issue | head -n 1`
+if [ -n "$(echo $os_version | sed -n '/^RCO-IDV-Rain_*/p' | sed -n '/_NS$/p')" ] ; then
+    main_version=`echo $os_version | awk -F "_" '{print $3}' | awk -F "." '{printf("%04d", $2)}'`
+    temp_version=`echo $os_version | awk -F "_" '{print $3}' | awk -F "." '{print $1}' | cut -c 3-`
+    new_os_version="IDV-RainOS_${main_version}${temp_version}"
+    echo "$new_os_version" > /etc/issue
+    sync
+fi
+
+script_path=/etc/RCC_Client/scripts
+#copy self-startup scripts to autostart
+if [ -d /etc/AutoStart.login ] ; then
+    cp -f $script_path/0800B_RCO_CLIENT.bash            /etc/AutoStart.login/
+    cp -f $script_path/0900F_rco_hotplug.bash           /etc/AutoStart.xinit/
+    mkdir -p /etc/rcc-bak
+    cp -f $script_path/rcc_daemon/0800B_RCC_CLIENT.bash /etc/rcc-bak/
+    cp -f $script_path/rcc_daemon/0800B_RCC_BACK.bash   /etc/rcc-bak/
+    cp -f $script_path/rcc_daemon/rcc_client_daemon.sh  /etc/rcc-bak/
+    cp -f $script_path/rcc_daemon/tch_client_daemon.sh  /etc/rcc-bak/
+    cp -f $script_path/rcc_post_up2class.sh             /etc/rcc-bak/
+    sync
+fi
+
+os_version_fourth=`cat /etc/issue | awk -F. '/RCO-IDV-RainOS_V1.0/ {print $3}'`
+if [ "$os_version_fourth" != "" ] && [ $os_version_fourth -lt 29 ]; then
+    sed -i '/^\[ ! "\$rootdevnum" = "\/dev\/sda4" ] && echo "rootfs error" && exit$/d' /etc/fixpart.sh
+    sync
+    /etc/fixpart.sh
+fi
+
+#update grub
+if [ -z "$(cat /etc/issue | sed -n '/^IDV-RainOS_*/p')" ] ; then
+    os_version_main=$(cat /etc/issue | awk -F_ '{print $2}' | awk -F. '{print $1}' | cut -c 2-)
+    if [[ -n "$os_version_main" && $os_version_main -eq 2 ]]; then
+        cp -f /etc/RCC_Client/scripts/grub_3.0  /etc/default/grub
+        update-grub
+    fi
+fi
+
+if [ "$os_version_fourth" != "" ] && [ $os_version_fourth -lt 31 ]; then
+    if [ ! -d "/opt/lessons/RCC_Client" ]; then
+        mkdir -p /opt/lessons/RCC_Client
+        sync
+    fi
+    cp -n /etc/RCC_Client/*.ini /opt/lessons/RCC_Client/
+    cp -n /etc/RCC_Client/lastonlinetime /opt/lessons/RCC_Client/
+    sync
+fi
+
+layer_path="/opt/lessons/layer"
+layer_tgz="/etc/RCC_Client/layer/layer_templete.tgz"
+
+layer_file=$layer_path/layer_templete
+layer_md5=$layer_path/layer_templete.md5
+
+if [ ! -f "$layer_file" -o ! -f "$layer_md5" ]; then
+    tar zxvf  "$layer_tgz"  -C /opt/lessons/
+    sync
+  
+   if [ -f "$layer_md5" ]; then
+        md5sum -c "$layer_md5"
+        ret=$?
+        
+        if [ $ret -ne 0 ]; then
+            rm -rf "$layer_path"
+        fi
+
+    fi
+fi
+
+# for the old version compatibility
+cp -f /usr/local/bin/display_init /usr/local/bin/display_hotplug
+
+sleep 1
+sync

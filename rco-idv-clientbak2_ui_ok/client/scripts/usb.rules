@@ -1,0 +1,1 @@
+KERNEL=="sd*[0-9]",SUBSYSTEMS=="usb", RUN+="/usr/local/bin/usb_mnt %k %n"

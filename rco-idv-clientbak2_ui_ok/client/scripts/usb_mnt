@@ -1,0 +1,10 @@
+#!/bin/sh
+if [ "$ACTION" = "add" ]
+then
+        mkdir -p /mnt/usb_"$1"
+        mount /dev/"$1" /mnt/usb_"$1"
+elif [ "$ACTION" = "remove" ]
+then
+        umount /mnt/usb_"$1"
+        rm -rf /mnt/usb_"$1"
+fi
