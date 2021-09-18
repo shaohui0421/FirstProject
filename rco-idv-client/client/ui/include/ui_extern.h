@@ -82,6 +82,7 @@ void ui_extern_get_current_dpi(char *width,char *height);
 int ui_extern_get_display_port_number();
 int ui_extern_get_display_port_connected_number();
 int ui_extern_is_display_enable(int port);
+int ui_extern_using_boot_speedup();
 int ui_extern_is_display_connected(int port);
 int ui_extern_get_display_resolution_list(int port, ui_res_info *res_info, int max_list_size);
 void ui_extern_save_boot_speedup(int boot_speedup);

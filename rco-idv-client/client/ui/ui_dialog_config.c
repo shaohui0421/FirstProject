@@ -569,14 +569,6 @@ static void ui_dialog_config_reload()
         gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(power_boot_checkbox), FALSE);
     }
 	
-//    int boot_speedup;
-//    ui_extern_get_boot_speedup(&boot_speedup);
-//    if (boot_speedup == 1) {
-//        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(boot_speedup_checkbox), TRUE);
-//    } else if (boot_speedup == 0) {
-//        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(boot_speedup_checkbox), FALSE);
-//    }
-
 
     if(ui_extern_is_hdmi_connected() && ui_extern_start_vmmode_is_emulation ()) {
         int hdmi_audio;
@@ -586,6 +578,13 @@ static void ui_dialog_config_reload()
         } else if (hdmi_audio == 0) {
             gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(hdmi_audio_checkbox), FALSE);
         }
+    }
+
+    int boot_speedup = ui_extern_using_boot_speedup();
+    if (boot_speedup == 1) {
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(boot_speedup_checkbox), TRUE);
+    } else if (boot_speedup == 0) {
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(boot_speedup_checkbox), FALSE);
     }
 
     if (e1000_netcard_checkbox) {

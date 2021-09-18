@@ -310,7 +310,8 @@ void Application::on_entering_initing()
         {
             LOG_DEBUG("call l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT)");
 			LOG_INFO("call l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT)1414141414");
-            //l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT);
+			//NoNetwireConnect = 1;
+            l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT);
         }
     }
 }

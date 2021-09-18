@@ -144,6 +144,7 @@ static GtkWidget *  align_center(GtkWidget * widget)
 
 static  GtkWidget * mk_net_disconect_prompt(char *icon, int lab_font_size, char * btn_text, GCallback callback, void* data)
 {
+
     GtkWidget * line1;
     GtkWidget * line2;
 
@@ -187,7 +188,7 @@ static  GtkWidget * mk_net_disconect_prompt(char *icon, int lab_font_size, char 
     gtk_box_pack_start(GTK_BOX(vbox), align_center(line1_hbox), FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(vbox), align_center(line2_hbox), FALSE, FALSE, 0);
     gtk_widget_show(vbox);
-    return vbox;
+	return vbox;
 }
 #if 0
 static void _dev_locked_tips(const int lock_type, char *tips)
@@ -590,16 +591,31 @@ static int ui_win_status_init()
         gtk_box_pack_start(GTK_BOX(hbox), prompt, FALSE, FALSE, 10);
         break;
     case UI_WIN_STATUS_NET_DISCONNETCT:
-		if(1)
-		{
+		//Application *app = Application::get_application();
+		//if(ui_extern_using_boot_speedup())//&&(!(app->NoNetwireConnect)))
+		//{
 			//ui_win_status_enter_local_mode();
-			ui_extern_enter_local_mode();
-		}
-		else
+		//	ui_extern_enter_local_mode();
+		//}
+		//else
 		{
-	    	//ui_win_btn_all_enable();
-	       	prompt = mk_net_disconect_prompt("./icon/ico_abnormal.png", 27, "立即登录", G_CALLBACK(ui_win_status_enter_local_mode), NULL);
-	        gtk_box_pack_start(GTK_BOX(hbox), prompt, FALSE, FALSE, 10);
+			//ui_win_btn_all_enable();
+			if(ui_extern_using_boot_speedup())
+			{
+				//if(!(app->NoNetwireConnect))
+				//{
+				//	prompt = create_prompt("./icon/ico_loading.png", "正在连接中...", 27,NULL,  NULL,NULL);
+				//}
+				//else
+				{
+					prompt = create_prompt("./icon/ico_loading.png", "正在连接中...", 27,NULL,  G_CALLBACK(ui_win_status_enter_local_mode),NULL);
+				}
+			}
+			else
+			{
+	       		prompt = mk_net_disconect_prompt("./icon/ico_abnormal.png", 27, "立即登录", G_CALLBACK(ui_win_status_enter_local_mode), NULL);
+	        }
+			gtk_box_pack_start(GTK_BOX(hbox), prompt, FALSE, FALSE, 10);
 	        //ui_win_set_pos(hbox, 35, 30);
 	        ui_manager_hold_timer();
 	        g_signal_connect (G_OBJECT (hbox), "show", G_CALLBACK (ui_manager_offline_autologin_timer_enable), NULL);

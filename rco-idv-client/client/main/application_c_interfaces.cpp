@@ -1240,6 +1240,19 @@ void ui_save_e1000_netcard(int e1000_netcard)
     app->get_UsrUserInfoMgr()->set_e1000_netcard(e1000_netcard);
 }
 
+int ui_using_boot_speedup()
+{
+	Application *app = Application::get_application();
+	if(app->get_UsrUserInfoMgr()->is_using_boot_speedup())
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
 int ui_using_e1000_netcard()
 {
     string ostype;

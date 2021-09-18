@@ -473,6 +473,7 @@ public:
     void config_net_auth_cancel(void* data);
     int config_sync_event_response(int event_id, void* data);
     ~Application();
+	//int NoNetwireConnect;
 
 private:
 	Application();
@@ -1066,7 +1067,7 @@ private:
     ImageInfo _server_image_info;
     int _bt_service;
     int _power_boot;
-	int _boot_speedup;
+//	int _NoNetwireConnect;
     int _hide_guest_login;
     UpgradeInfo _upgradeInfo;//storage for upgrade to class
     /**

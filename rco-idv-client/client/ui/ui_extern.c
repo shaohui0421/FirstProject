@@ -286,19 +286,6 @@ void ui_extern_get_power_boot(int *power_boot)
 
 }
 
-//void ui_extern_get_boot_speedup(int *boot_speedup)
-//{
-//#ifdef IDV_CLIENT
-//	ui_get_boot_speedup(boot_speedup);
-//	return;
-//#else
-//	*boot_speedup = 0;
-//	return;
-//#endif
-//
-//}
-
-
 void ui_extern_is_new_deploy(int *is_new_deploy)
 {
 #ifdef IDV_CLIENT
@@ -848,6 +835,15 @@ void ui_extern_save_boot_speedup(int boot_speedup)
     ui_save_boot_speedup(boot_speedup);
 #else
     logi("ui_extern_save_boot_speedup\n");
+#endif
+}
+
+int ui_extern_using_boot_speedup()
+{
+#ifdef IDV_CLIENT
+    return ui_using_boot_speedup();
+#else
+    logi("ui_extern_using_boot_speedup\n");
 #endif
 }
 

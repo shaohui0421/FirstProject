@@ -155,6 +155,7 @@ void ui_get_current_dpi(char *width, char *height);
 int ui_get_wired1xauth_exist();
 int ui_delete_auth_info();
 void ui_save_boot_speedup(int boot_speedup);
+int ui_using_boot_speedup();
 void ui_save_e1000_netcard(int e1000_netcard);
 int ui_using_e1000_netcard();
 void ui_save_usb_emulation(int usb_emulation);

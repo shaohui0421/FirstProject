@@ -816,17 +816,24 @@ void UserInfoMgr::get_vm_desktop_redir(string &redir_switch)
     db_vm_config.get_vm_desktop_redir(redir_switch);
 }
 
-void UserInfoMgr::set_e1000_netcard(const bool &netcard_switch)
-{
-    OtherConfigDB db_other_config;
-    db_other_config.set_e1000_netcard(netcard_switch);
-    db_other_config.saveUserDB();
-}
-
 void UserInfoMgr::set_boot_speedup(const bool &boot_speedup)
 {
     OtherConfigDB db_other_config;
     db_other_config.set_boot_speedup(boot_speedup);
+    db_other_config.saveUserDB();
+}
+
+bool UserInfoMgr::is_using_boot_speedup(void)
+{
+    OtherConfigDB db_other_config;
+    return db_other_config.is_using_boot_speedup();
+}
+
+
+void UserInfoMgr::set_e1000_netcard(const bool &netcard_switch)
+{
+    OtherConfigDB db_other_config;
+    db_other_config.set_e1000_netcard(netcard_switch);
     db_other_config.saveUserDB();
 }
 

@@ -111,6 +111,7 @@ public:
     void set_vm_desktop_redir(const string &redir_switch);
     void get_vm_desktop_redir(string &redir_switch);
 	void set_boot_speedup(const bool &boot_speedup);
+    bool is_using_boot_speedup(void);
     void set_e1000_netcard(const bool &netcard_switch);
     bool is_using_e1000_netcard(void);
     void set_usb_emulation(const bool &is_emulation);

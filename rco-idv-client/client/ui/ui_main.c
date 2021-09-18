@@ -212,10 +212,12 @@ void ui_manager_publogin_timeout_disable()
 void ui_manager_publogin_timeout_enable()
 {
     ui_manager_publogin_timeout_disable();
-    g_win_manager.pub_login_timer = g_timeout_add_seconds(5, ui_manager_publogin_timeout, NULL);
+    g_win_manager.pub_login_timer = g_timeout_add_seconds(2, ui_manager_publogin_timeout, NULL);
 }
 
 #define OFFLINE_AUTOLOGIN_TIMEOUT_SECONDS 15
+#define OFFLINE_AUTOLOGIN_TIMEOUT_SECONDS_BOOT_SPEEDUP 1
+
 /* auto login if offline for a few seconds */
 
 static gboolean ui_manager_offline_autologin_timer_expire(gpointer user_data)
@@ -240,9 +242,19 @@ void ui_manager_offline_autologin_timer_disable()
 
 void ui_manager_offline_autologin_timer_enable()
 {
-    ui_manager_offline_autologin_timer_disable();
-    g_win_manager.offlinelogin_timer = g_timeout_add_seconds(OFFLINE_AUTOLOGIN_TIMEOUT_SECONDS,
+	if(ui_extern_using_boot_speedup())
+	{
+		ui_manager_offline_autologin_timer_disable();
+    	g_win_manager.offlinelogin_timer = g_timeout_add_seconds(OFFLINE_AUTOLOGIN_TIMEOUT_SECONDS_BOOT_SPEEDUP,
         ui_manager_offline_autologin_timer_expire, NULL);
+	}
+	else
+	{
+		ui_manager_offline_autologin_timer_disable();
+    	g_win_manager.offlinelogin_timer = g_timeout_add_seconds(OFFLINE_AUTOLOGIN_TIMEOUT_SECONDS,
+        ui_manager_offline_autologin_timer_expire, NULL);
+	}
+    
 }
 
 
