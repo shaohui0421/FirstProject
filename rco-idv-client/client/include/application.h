@@ -137,7 +137,6 @@ enum EventType
     U2L_NOTIFY_WIFI_CONFIG_RESULT,
     U2L_NOTIFY_AUTH_CONFIG_RESULT,
     U2L_SAVE_POWER_BOOT,
-    U2L_SAVE_BOOT_SPEEDUP,
     U2L_USB_COPY_BASE,
     U2L_UPGRADE_FOR_CLASS,
 
@@ -653,7 +652,6 @@ public:
     void ui_show_login();
     int ui_save_bt_service(int bt_service);
     int ui_save_power_boot(const int power_boot);
-	int ui_save_boot_speedup(const int boot_speedup);
     int ui_usb_copy_base();
     int ui_get_hide_guest_login()
     {

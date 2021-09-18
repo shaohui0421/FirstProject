@@ -569,13 +569,13 @@ static void ui_dialog_config_reload()
         gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(power_boot_checkbox), FALSE);
     }
 	
-    int boot_speedup;
-    ui_extern_get_boot_speedup(&boot_speedup);
-    if (boot_speedup == 1) {
-        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(boot_speedup_checkbox), TRUE);
-    } else if (boot_speedup == 0) {
-        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(boot_speedup_checkbox), FALSE);
-    }
+//    int boot_speedup;
+//    ui_extern_get_boot_speedup(&boot_speedup);
+//    if (boot_speedup == 1) {
+//        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(boot_speedup_checkbox), TRUE);
+//    } else if (boot_speedup == 0) {
+//        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(boot_speedup_checkbox), FALSE);
+//    }
 
 
     if(ui_extern_is_hdmi_connected() && ui_extern_start_vmmode_is_emulation ()) {
@@ -908,19 +908,6 @@ gboolean ui_dialog_power_boot_click(GtkWidget *widget, gpointer data)
     }	
 	return 0;
 }
-gboolean ui_dialog_boot_speedup_click(GtkWidget *widget, gpointer data)
-{
-    if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget))) {
-        ui_save_boot_speedup(TRUE);
-        logi("boot_speedup set active true\n");
-    } else {
-        ui_save_boot_speedup(FALSE);
-        logi("boot_speedup set active false\n");
-    }	
-	return 0;
-}
-
-
 gboolean ui_dialog_hdmi_audio_click(GtkWidget *widget, gpointer data)
 {
 #define SUPPORT   1
@@ -938,6 +925,19 @@ gboolean ui_dialog_hdmi_audio_click(GtkWidget *widget, gpointer data)
 #undef NONSUPPORT
     return 0;
 }
+
+gboolean ui_dialog_boot_speedup_click(GtkWidget *widget, gpointer data)
+{
+    if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget))) {
+        ui_extern_save_boot_speedup(TRUE);
+        logi("boot_speedup set active true\n");
+    } else {
+        ui_extern_save_boot_speedup(FALSE);
+        logi("boot_speedup set active false\n");
+    }	
+	return 0;
+}
+
 
 gboolean ui_dialog_e1000_netcard_click(GtkWidget *widget, gpointer data)
 {

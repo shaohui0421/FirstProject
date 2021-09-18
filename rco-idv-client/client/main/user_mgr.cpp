@@ -823,6 +823,13 @@ void UserInfoMgr::set_e1000_netcard(const bool &netcard_switch)
     db_other_config.saveUserDB();
 }
 
+void UserInfoMgr::set_boot_speedup(const bool &boot_speedup)
+{
+    OtherConfigDB db_other_config;
+    db_other_config.set_boot_speedup(boot_speedup);
+    db_other_config.saveUserDB();
+}
+
 bool UserInfoMgr::is_using_e1000_netcard(void)
 {
     OtherConfigDB db_other_config;

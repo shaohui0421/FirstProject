@@ -2469,6 +2469,40 @@ void VMConfigDB::get_vm_desktop_redir(string &redir_switch)
     redir_switch = getEntry("desktop_info", "desktop_redir", "Y");
 }
 
+
+int OtherConfigDB::get_boot_speedup()
+{
+	//int _boot_speedup;
+	//Application *app = Application::get_application();
+	//app->get_vm()->vm_get_vm_otherSetting(_boot_speedup);
+
+	string switch_str = getEntry("bootSpeed", "switch", "1");
+	if(switch_str == "1")
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+void OtherConfigDB::set_boot_speedup(const bool &_boot_speedup)
+{
+	//int _boot_speedup;
+	//Application *app = Application::get_application();
+	//app->get_vm()->vm_set_vm_otherSetting(_boot_speedup);
+	if(_boot_speedup)
+	{
+		setEntry("bootSpeedup", "switch", "1");
+	}
+	else
+	{
+		setEntry("bootSpeedup", "switch", "0");
+	}
+}
+
+
 void OtherConfigDB::set_e1000_netcard(const bool &netcard_switch)
 {
     if (netcard_switch) {

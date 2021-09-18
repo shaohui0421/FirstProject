@@ -741,27 +741,6 @@ int ui_save_power_boot(int power_boot)
     APPLICATION_ACTION_WITH_PARAMENT(ui_save_power_boot, power_boot);
 }
 
-int ui_get_boot_speedup(int *boot_speedup)
-{
-    int ret = 0;
-    if(boot_speedup==NULL)
-    {
-        ret = ERROR_INPUT;
-    }
-    else
-    {
-        Application* app = Application::get_application();
-        ret = app->ui_get_boot_speedup(boot_speedup);
-    }
-    return ret;
-}
-
-
-int ui_save_boot_speedup(int boot_speedup)
-{
-    APPLICATION_ACTION_WITH_PARAMENT(ui_save_boot_speedup, boot_speedup);
-}
-
 
 int ui_is_new_deploy(int *is_new_deploy)
 {
@@ -1248,6 +1227,13 @@ int ui_delete_auth_info()
     return app->get_UsrUserInfoMgr()->delete_auth_info();
 }
 
+void ui_save_boot_speedup(int boot_speedup)
+{
+    Application *app = Application::get_application();
+    app->get_UsrUserInfoMgr()->set_boot_speedup(boot_speedup);
+}
+
+
 void ui_save_e1000_netcard(int e1000_netcard)
 {
     Application *app = Application::get_application();
@@ -1332,6 +1318,7 @@ int ui_using_powerboot()
     powerboot = app->get_device_interface()->getPowerBootState();
     return powerboot;
 }
+
 
 
 #if 0

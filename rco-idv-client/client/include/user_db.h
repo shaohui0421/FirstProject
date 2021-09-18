@@ -486,6 +486,8 @@ class OtherConfigDB:public UserDB
 public:
     OtherConfigDB(): UserDB(USER_OTHER_CONFIG_INI) { load(); }
     virtual ~OtherConfigDB() { unload(); }
+	int get_boot_speedup();
+	void set_boot_speedup(const bool &boot_speedup);
     void set_e1000_netcard(const bool &netcard_switch);
     bool is_using_e1000_netcard(void);
     void set_usb_emulation(const bool &is_emulation);

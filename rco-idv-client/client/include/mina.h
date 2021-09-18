@@ -60,8 +60,8 @@ class InfoTimer;
     {
         CONNECT_TIME_S = 2,
         CONNECT_INTERVAL = 5*1000,
-        KEEPALIVE_INTERVAL = 15*1000,
-        CONNECT_TIMEOUT_S = 15,
+        KEEPALIVE_INTERVAL = 10*1000,
+        CONNECT_TIMEOUT_S = 10,
     };
     enum Length { VERSION_LENGTH = 32,};
     typedef std::map<int, InfoTimer*> InfoTimers;

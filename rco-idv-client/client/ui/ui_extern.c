@@ -286,17 +286,17 @@ void ui_extern_get_power_boot(int *power_boot)
 
 }
 
-void ui_extern_get_boot_speedup(int *boot_speedup)
-{
-#ifdef IDV_CLIENT
-	ui_get_boot_speedup(boot_speedup);
-	return;
-#else
-	*boot_speedup = 0;
-	return;
-#endif
-
-}
+//void ui_extern_get_boot_speedup(int *boot_speedup)
+//{
+//#ifdef IDV_CLIENT
+//	ui_get_boot_speedup(boot_speedup);
+//	return;
+//#else
+//	*boot_speedup = 0;
+//	return;
+//#endif
+//
+//}
 
 
 void ui_extern_is_new_deploy(int *is_new_deploy)
@@ -841,6 +841,16 @@ int ui_extern_get_display_resolution_list(int port, ui_res_info *res_info, int m
 #endif
     return ret;
 }
+
+void ui_extern_save_boot_speedup(int boot_speedup)
+{
+#ifdef IDV_CLIENT
+    ui_save_boot_speedup(boot_speedup);
+#else
+    logi("ui_extern_save_boot_speedup\n");
+#endif
+}
+
 
 void ui_extern_save_e1000_netcard(int e1000_netcard)
 {

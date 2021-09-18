@@ -56,8 +56,6 @@ bool is_wifi_terminal();
 bool is_support_dot1x();
 int get_power_boot(int* power_boot);
 int set_power_boot(int power_boot);
-int get_boot_speedup(int *boot_speedup);
-int set_boot_speedup(int boot_speedup);
 
 unsigned short GetHexStrVal(const string &hex_str);
 int get_file_md5_key(const char *file_path, char *md5_key);

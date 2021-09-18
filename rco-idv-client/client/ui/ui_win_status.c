@@ -590,13 +590,21 @@ static int ui_win_status_init()
         gtk_box_pack_start(GTK_BOX(hbox), prompt, FALSE, FALSE, 10);
         break;
     case UI_WIN_STATUS_NET_DISCONNETCT:
-    	//ui_win_btn_all_enable();
-       	prompt = mk_net_disconect_prompt("./icon/ico_abnormal.png", 27, "立即登录", G_CALLBACK(ui_win_status_enter_local_mode), NULL);
-        gtk_box_pack_start(GTK_BOX(hbox), prompt, FALSE, FALSE, 10);
-        //ui_win_set_pos(hbox, 35, 30);
-        ui_manager_hold_timer();
-        g_signal_connect (G_OBJECT (hbox), "show", G_CALLBACK (ui_manager_offline_autologin_timer_enable), NULL);
-        g_signal_connect (G_OBJECT (hbox), "hide",  G_CALLBACK (ui_manager_offline_autologin_timer_disable), NULL);
+		if(1)
+		{
+			//ui_win_status_enter_local_mode();
+			ui_extern_enter_local_mode();
+		}
+		else
+		{
+	    	//ui_win_btn_all_enable();
+	       	prompt = mk_net_disconect_prompt("./icon/ico_abnormal.png", 27, "立即登录", G_CALLBACK(ui_win_status_enter_local_mode), NULL);
+	        gtk_box_pack_start(GTK_BOX(hbox), prompt, FALSE, FALSE, 10);
+	        //ui_win_set_pos(hbox, 35, 30);
+	        ui_manager_hold_timer();
+	        g_signal_connect (G_OBJECT (hbox), "show", G_CALLBACK (ui_manager_offline_autologin_timer_enable), NULL);
+	        g_signal_connect (G_OBJECT (hbox), "hide",  G_CALLBACK (ui_manager_offline_autologin_timer_disable), NULL);
+		}
         break;
     case UI_WIN_STATUS_LICENSE_OVERRUN:
         prompt = create_prompt("./icon/ico_abnormal.png", "终端数已达授权上限，请申请新的授权", 27, "确定", G_CALLBACK(ui_win_status_client_tips), (void *)UI_TIPS_LICENSE_OVERRUN_RET);

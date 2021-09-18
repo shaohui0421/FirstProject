@@ -192,6 +192,7 @@ Application::Application()
 	,_logined (false)
 	,_admin_passwd ("ruijie.com")
 	,_bt_service(0)
+	,_boot_speedup(1)
 	,_hide_guest_login(0)
 	,_configure_serverip_sync_flag (false)
     ,_configure_hostname("")
@@ -1481,7 +1482,6 @@ DEFINE_APPLICATION_API_WITHOUT_PARAM(ui_notify_auth_config_result,              
         
 
 DEFINE_APPLICATION_API_WITH_PARAM(ui_save_power_boot,           const int,          int,            U2L_SAVE_POWER_BOOT)
-DEFINE_APPLICATION_API_WITH_PARAM(ui_save_boot_speedup,			const int,			int,			U2L_SAVE_BOOT_SPEEDUP)
 DEFINE_APPLICATION_API_WITHOUT_PARAM(ui_usb_copy_base,                                              U2L_USB_COPY_BASE)
 DEFINE_APPLICATION_API_WITHOUT_PARAM(ui_upgrade_for_class,                                          U2L_UPGRADE_FOR_CLASS)
 
@@ -1532,7 +1532,7 @@ int Application::web_show_ui_disconnect()
         }
         else
         {
-            LOG_INFO("call l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT)");
+            LOG_INFO("call l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT)11111");
             l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT);
         }
     }
@@ -1697,21 +1697,6 @@ int Application::ui_get_power_boot(int* power_boot)
         return SUCCESS;
     }
 }
-
-int Application::ui_get_boot_speedup(int* boot_speedup)
-{
-    if (boot_speedup == NULL) {
-        return -1;
-    }
-    int ret = get_boot_speedup(&_boot_speedup);
-    if (ret != 0) {
-        return -1;
-    } else {
-        *boot_speedup = _boot_speedup;
-        return SUCCESS;
-    }
-}
-
 
 int Application::ui_is_new_deploy(int *is_new_deploy)
 {
@@ -2067,6 +2052,7 @@ void Application::vm_usb_download_disconnect(){
     if(_status_machine.get_status() == STATUS_NEW_DEPLOY) {
         l2u_show_newdeploy_connect(0);
     } else {
+	    LOG_INFO("call l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT)22222");
         l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT);
     }
     _process_loop.erase_event(V2L_VM_DOWNLOAD_PROGRESS_STATUS);
@@ -2499,6 +2485,7 @@ int Application::l2l_link_down(LogicEvent* event)
                      */
             if (_status_machine.get_status() == STATUS_INITING && !_mina->mina_get_server_ip().empty()) {
                 LOG_DEBUG("call l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT)");
+				LOG_INFO("call l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT)33333");
                 l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT);
             }
             else if(_newdeploy_manage->is_new_terminal()) {
@@ -3754,6 +3741,7 @@ int Application::l2u_notify_setting_result(LogicEvent* event)
                         if(_newdeploy_manage->is_new_terminal()) {
                             l2u_show_newdeploy_connect(0);
                         } else {
+                        	LOG_INFO("call l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT)44444");
                             l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT);
                             _newdeploy_manage->reset_status();
                         }
@@ -3771,6 +3759,7 @@ int Application::l2u_notify_setting_result(LogicEvent* event)
                     if(_newdeploy_manage->is_new_terminal()) {
                         l2u_show_newdeploy_connect(0);
                     } else {
+                    	LOG_INFO("call l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT)55555");
                         l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT);
                         _newdeploy_manage->reset_status();
                     }
@@ -3801,6 +3790,7 @@ int Application::l2u_notify_setting_result(LogicEvent* event)
                 }
                 else
                 {
+                	LOG_INFO("call l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT)66666");
                     l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT);
                 }
                 break;       
@@ -3881,6 +3871,7 @@ int Application::l2u_notify_wifi_config_result(LogicEvent* event)
                     if(_newdeploy_manage->is_new_terminal()) {
                         l2u_show_newdeploy_connect(0);
                     } else {
+                    	LOG_INFO("call l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT)77777");
                         l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT);
                         _newdeploy_manage->reset_status();
                     }
@@ -3898,6 +3889,7 @@ int Application::l2u_notify_wifi_config_result(LogicEvent* event)
                 if(_newdeploy_manage->is_new_terminal()) {
                     l2u_show_newdeploy_connect(0);
                 } else {
+                	LOG_INFO("call l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT)88888");
                     l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT);
                     _newdeploy_manage->reset_status();
                 }
@@ -3928,6 +3920,7 @@ int Application::l2u_notify_wifi_config_result(LogicEvent* event)
             }
             else
             {
+            	LOG_INFO("call l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT)99999");
                 l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT);
             }
             break;       
@@ -3982,6 +3975,7 @@ int Application::l2u_notify_auth_config_result(LogicEvent* event)
                     if(_newdeploy_manage->is_new_terminal()) {
                         l2u_show_newdeploy_connect(0);
                     } else {
+                    	LOG_INFO("call l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT)1010101010");
                         l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT);
                         _newdeploy_manage->reset_status();
                     }
@@ -3999,6 +3993,7 @@ int Application::l2u_notify_auth_config_result(LogicEvent* event)
                 if(_newdeploy_manage->is_new_terminal()) {
                     l2u_show_newdeploy_connect(0);
                 } else {
+                	LOG_INFO("call l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT)1111111111");
                     l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT);
                     _newdeploy_manage->reset_status();
                 }
@@ -4029,6 +4024,7 @@ int Application::l2u_notify_auth_config_result(LogicEvent* event)
             }
             else
             {
+	            LOG_INFO("call l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT)1212121212");
                 l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT);
             }
             break;
@@ -7791,6 +7787,7 @@ void Application::l2u_show_disconnect_wrap()
     if(_userinfomgr.UI_permitted())
     {
         LOG_DEBUG("call l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT)");
+		LOG_INFO("call l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT)1313131313");
         //l2u_show_disconnect();
         l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT);
     }

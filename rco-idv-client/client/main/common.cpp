@@ -724,28 +724,6 @@ int set_power_boot(int power_boot)
     return ret;
 }
 
-
-
-int get_boot_speedup(int *boot_speedup)
-{
-	int ret=1;
-
-	*boot_speedup = 1;
-
-	LOG_INFO("get_boot_speedup: %d", boot_speedup);
-	return ret;
-}
-
-int set_boot_speedup(int boot_speedup)
-{
-	int ret=1;
-
-	boot_speedup = 1;
-	LOG_INFO("set_boot_speedup: %d", boot_speedup);
-	return ret;
-}
-
-
 /**
 * function : change str val hex to  dec
 * pChar：hex str lenth: str lenth most for 2 byte

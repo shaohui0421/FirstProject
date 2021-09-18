@@ -309,7 +309,8 @@ void Application::on_entering_initing()
         else if(is_dev_network_down() && _ui_locking==false && _status_machine.get_status() != STATUS_CHECKING_LOCAL)
         {
             LOG_DEBUG("call l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT)");
-            l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT);
+			LOG_INFO("call l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT)1414141414");
+            //l2u_show_tips(UI_TIPS_NET_DISCONNETCT_OPT);
         }
     }
 }
